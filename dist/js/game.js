@@ -25,6 +25,9 @@ const getRandomCoords = (xCount, yCount, [notX, notY]) => {
 
 
 
+// TODO: for clarity, initilize properties within constructor,
+// even if not to be immediately 
+// used(probably with null values). 
 // (x,y)Count are the number of cells on x and y axis
 const Game = function(xCount, yCount) {
     this.xCount = xCount
