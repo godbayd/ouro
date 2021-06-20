@@ -35,8 +35,19 @@ const Game = function(xCount, yCount) {
     this.live = false
     this.snakeCoords = null
     this.appleCoords = null
+    this.bodyCoordsStore = []
 }
 
+
+Game.prototype._eatApple = function() {
+    const isEaten = this.snakeCoords[0] === this.appleCoords[0] && 
+                    this.snakeCoords[1] === this.appleCoords[1]
+    if (isEaten) {
+        log(`*** eaten at: ${JSON.stringify(this.snakeCoords)}`)
+        // add to snake body
+        this.bodyCoordsStore.push([...this.snakeCoords])
+    }
+}
 
 
 // fills grid with new data
@@ -48,6 +59,12 @@ Game.prototype.updateGrid = function() {
     
     this.grid[sy][sx] = cell.head
     this.grid[ay][ax] = cell.apple
+    
+    this._eatApple()
+    this.bodyCoordsStore.forEach(function([_sx, _sy]) {
+        log(this)
+        this.grid[_sy][_sx] = cell.body
+    }, this)
 }
 
 
@@ -55,6 +72,15 @@ Game.prototype.updateGrid = function() {
 // current direction
 Game.prototype.step = function() {
     const [sx, sy] = this.snakeCoords
+    log(this.snakeCoords)
+    log(
+        this.bodyCoordsStore.reduce((acc, coords) => {
+            return acc + ', ' + JSON.stringify(coords)
+        }, 'store: ')
+    )
+    
+    this.bodyCoordsStore.push([...this.snakeCoords])
+    this.bodyCoordsStore.shift()
     
     switch(this.direction) {
         case "ArrowUp":
@@ -86,7 +112,6 @@ Game.prototype.step = function() {
             }
             break
     }
-
     this.updateGrid()
 }
 
@@ -98,6 +123,20 @@ Game.prototype.init = function() {
 }
 
 
+Game.prototype.placeApple = function() {
+    // TODO: add avoidance of snake 
+    // body as well as snake head
+    // in getRandomCoords()
+    this.appleCoords = getRandomCoords(
+        this.xCount, 
+        this.yCount, 
+        this.snakeCoords
+    )
+    
+    const [ax, ay] = this.appleCoords
+    
+    this.grid[ay][ax] = cell.apple
+}
 
 // fills grid with initial(pre live)
 // snake and appleCoords cells
@@ -108,12 +147,10 @@ Game.prototype.placeSnakeAndApple = function() {
     
     // update grid
     this.snakeCoords = [sx, sy]
-    this.appleCoords = getRandomCoords(this.xCount, this.yCount, [sx, sy])
     
     this.grid[sy][sx] = cell.head
     
-    const [ax, ay] = this.appleCoords
-    this.grid[ay][ax] = cell.apple
+    this.placeApple()
 }
 
 
