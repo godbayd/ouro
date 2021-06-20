@@ -1,3 +1,7 @@
+// TODO: re place apple when it has been eaten
+// TODO: make sure to only be able to change direction once per step
+
+
 // generates random numbers within inclusive range
 // taken from mozilla mdn web docs
 function getRandomIntInclusive(min, max) {
@@ -46,6 +50,7 @@ Game.prototype._eatApple = function() {
         log(`*** eaten at: ${JSON.stringify(this.snakeCoords)}`)
         // add to snake body
         this.bodyCoordsStore.push([...this.snakeCoords])
+        this.placeApple()
     }
 }
 
