@@ -1,11 +1,3 @@
-const cell = {
-    space: 0,
-    head: 1,
-    body: 11,
-    apple: 2
-}
-
-
 // generates random numbers within inclusive range
 // taken from mozilla mdn web docs
 function getRandomIntInclusive(min, max) {
