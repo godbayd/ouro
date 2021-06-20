@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+}
+
+
+:root {
+    --black: rgb(10,10,10);
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-top: 80px;
+    background-color: var(--black);
+}
