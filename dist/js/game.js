@@ -32,6 +32,12 @@ const getRandomCoords = (xCount, yCount, [notX, notY]) => {
 const Game = function(xCount, yCount) {
     this.xCount = xCount
     this.yCount = yCount
+    
+    this.grid = null
+    this.crash = false
+    this.live = false
+    this.snakeCoords = null
+    this.appleCoords = null
 }
 
 

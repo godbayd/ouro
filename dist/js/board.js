@@ -66,8 +66,8 @@ Board.prototype.handleArrowKeyDown = function({key}) {
     
     // when game hasn't started yet
     // initialize game loop
-    if (!this.live) {
-        this.live = true
+    if (!this.game.live) {
+        this.game.live = true
         this.spawn()
     }
 }
