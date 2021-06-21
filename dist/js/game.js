@@ -37,6 +37,7 @@ const Game = function(xCount, yCount) {
     this.snakeCoords = null
     this.appleCoords = null
     this.bodyCoordsStore = []
+    this.count = 1
 }
 
 
@@ -55,9 +56,11 @@ Game.prototype._eatApple = function() {
                     this.snakeCoords[1] === this.appleCoords[1]
     if (isEaten) {
         log(`*** eaten at: ${JSON.stringify(this.snakeCoords)}`)
+        
         // add to snake body
         this.bodyCoordsStore.push([...this.snakeCoords])
         this.placeApple()
+        this.count++
     }
 }
 
