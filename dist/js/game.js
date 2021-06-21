@@ -1,5 +1,7 @@
 // TODO: re place apple when it has been eaten
 // TODO: make sure to only be able to change direction once per step
+// if coming from left and up left is hit very quickly, before the step is over
+// it can break the no direct opposite direction rule
 
 
 // generates random numbers within inclusive range
@@ -67,7 +69,7 @@ Game.prototype.updateGrid = function() {
     
     this._eatApple()
     this.bodyCoordsStore.forEach(function([_sx, _sy]) {
-        log(this)
+        // log(this)
         this.grid[_sy][_sx] = cell.body
     }, this)
 }
@@ -77,12 +79,12 @@ Game.prototype.updateGrid = function() {
 // current direction
 Game.prototype.step = function() {
     const [sx, sy] = this.snakeCoords
-    log(this.snakeCoords)
-    log(
-        this.bodyCoordsStore.reduce((acc, coords) => {
-            return acc + ', ' + JSON.stringify(coords)
-        }, 'store: ')
-    )
+    // log(this.snakeCoords)
+    // log(
+    //     this.bodyCoordsStore.reduce((acc, coords) => {
+    //         return acc + ', ' + JSON.stringify(coords)
+    //     }, 'store: ')
+    // )
     
     this.bodyCoordsStore.push([...this.snakeCoords])
     this.bodyCoordsStore.shift()

@@ -1,5 +1,10 @@
 // TODO: make all internal methods private
 
+// state kept to track whether direction has been set within
+// step or not so that one direction chain per 
+// interval can be enforced.
+let directionAlreadyChanged = false
+
 const Board = function(width, height, game) {
     this.width  = width
     this.height = height
@@ -13,22 +18,30 @@ const Board = function(width, height, game) {
     this.canv.style.backgroundColor = 'white'
     
     this.handleArrowKeyDown = this.handleArrowKeyDown.bind(this)
+    this.gameLoop = this.gameLoop.bind(this)
+    
+    this.gameInterval = null
 }
 
 
 // start game loop
 Board.prototype.spawn = function() {
-    setInterval(this.gameLoop.bind(this), 100)
+    this.gameInterval = setInterval(this.gameLoop, 100)
     this.paint()
 }
-
 
 // when game hasn't crashed 
 // keep stepping
 // else stop interval
 Board.prototype.gameLoop = function() {
+    log('(interval)')
+    // allow for direction to change
+    // at the start of every interval
+    directionAlreadyChanged = false
+    
+    // FIXME: is not clearing on crash
     if (this.game.crash) {
-        return clearInterval(this.gameLoop)
+        return clearInterval(this.gameInterval)
     }
     this.game.step()
     this.paint()
@@ -40,27 +53,35 @@ Board.prototype.gameLoop = function() {
 // constrains directions to not move in
 // the direct opposite direction
 Board.prototype.handleArrowKeyDown = function({key}) {
-    switch(key) {
-        case "ArrowUp":
-            if (this.game.direction !== "ArrowDown") {
-                this.game.direction = key
-            }
-            break
-        case "ArrowDown":
-            if (this.game.direction !== "ArrowUp") {
-                this.game.direction = key
-            }
-            break
-        case "ArrowLeft":
-            if (this.game.direction !== "ArrowRight") {
-                this.game.direction = key
-            }
-            break
-        case "ArrowRight":
-            if (this.game.direction !== "ArrowLeft") {
-                this.game.direction = key
-            }
-            break
+    if (!directionAlreadyChanged && key !== this.game.direction) {
+        log(key)
+        switch(key) {
+            case "ArrowUp":
+                directionAlreadyChanged = true
+                if (this.game.direction !== "ArrowDown") {
+                    this.game.direction = key
+                }
+                break
+            case "ArrowDown":
+                directionAlreadyChanged = true
+                if (this.game.direction !== "ArrowUp") {
+                    this.game.direction = key
+                }
+                break
+            case "ArrowLeft":
+                directionAlreadyChanged = true
+                if (this.game.direction !== "ArrowRight") {
+                    this.game.direction = key
+                }
+                break
+            case "ArrowRight":
+                directionAlreadyChanged = true
+                if (this.game.direction !== "ArrowLeft") {
+                    this.game.direction = key
+                }
+                break
+        }
+            
     }
     
     
