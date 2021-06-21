@@ -34,12 +34,12 @@ Board.prototype.spawn = function() {
 // keep stepping
 // else stop interval
 Board.prototype.gameLoop = function() {
-    log('(interval)')
+    // log('(interval)')
+
     // allow for direction to change
     // at the start of every interval
     directionAlreadyChanged = false
     
-    // FIXME: is not clearing on crash
     if (this.game.crash) {
         return clearInterval(this.gameInterval)
     }

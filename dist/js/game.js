@@ -57,6 +57,22 @@ Game.prototype._eatApple = function() {
 }
 
 
+Game.prototype._ateItself = function() {
+
+    const collision = this.bodyCoordsStore.some(function (bodyCoords) {
+        const sc = JSON.stringify(this.snakeCoords)
+        const bc = JSON.stringify(bodyCoords)
+
+        return bc === sc
+    }, this)
+
+    if (collision) {
+        this.crash = true
+    }
+}
+
+
+
 // fills grid with new data
 Game.prototype.updateGrid = function() {
     const [sx, sy] = this.snakeCoords
@@ -88,7 +104,8 @@ Game.prototype.step = function() {
     
     this.bodyCoordsStore.push([...this.snakeCoords])
     this.bodyCoordsStore.shift()
-    
+
+
     switch(this.direction) {
         case "ArrowUp":
             if (sy > 0) {
@@ -119,6 +136,7 @@ Game.prototype.step = function() {
             }
             break
     }
+    this._ateItself()
     this.updateGrid()
 }
 
