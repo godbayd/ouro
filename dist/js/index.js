@@ -11,5 +11,12 @@ window.onload = e => {
     G.init()
     B.init()
     B.paint(G.grid)
+
+    // unofficial
+    select('#reset').onclick = () => {
+        G.resetGameState()
+        G.init()
+        B.paint(G.grid)
+    }
 }
 

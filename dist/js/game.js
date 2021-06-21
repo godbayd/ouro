@@ -1,3 +1,4 @@
+
 // generates random numbers within inclusive range
 // taken from mozilla mdn web docs
 function getRandomIntInclusive(min, max) {
@@ -30,6 +31,16 @@ const Game = function(xCount, yCount) {
     this.xCount = xCount
     this.yCount = yCount
     
+    this.grid = null
+    this.crash = false
+    this.live = false
+    this.snakeCoords = null
+    this.appleCoords = null
+    this.bodyCoordsStore = []
+}
+
+
+Game.prototype.resetGameState = function() {
     this.grid = null
     this.crash = false
     this.live = false
