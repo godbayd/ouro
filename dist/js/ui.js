@@ -1,3 +1,6 @@
+// NOTE: html element props may not be
+// needed here. Methods alone may suffice
+
 const UI = function(playBtn, resetBtn, countEl) {
     this.playBtn = this.playBtn
     this.resetBtn = this.resetBtn
