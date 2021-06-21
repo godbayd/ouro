@@ -37,6 +37,7 @@ const Game = function(xCount, yCount) {
     this.snakeCoords = null
     this.appleCoords = null
     this.bodyCoordsStore = []
+    this.direction = null
     this.count = 1
 }
 
@@ -48,6 +49,7 @@ Game.prototype.resetGameState = function() {
     this.snakeCoords = null
     this.appleCoords = null
     this.bodyCoordsStore = []
+    this.direction = null
 }
 
 

@@ -9,7 +9,7 @@ const UI = function(playBtn, resetBtn, countEl) {
 
 
 UI.prototype.playBtnClickHandler = function(e) {
-    
+
 }
 
 UI.prototype.resetBtnClickHandler = function(e) {
