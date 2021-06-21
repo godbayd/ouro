@@ -1,9 +1,3 @@
-// TODO: re place apple when it has been eaten
-// TODO: make sure to only be able to change direction once per step
-// if coming from left and up left is hit very quickly, before the step is over
-// it can break the no direct opposite direction rule
-
-
 // generates random numbers within inclusive range
 // taken from mozilla mdn web docs
 function getRandomIntInclusive(min, max) {
