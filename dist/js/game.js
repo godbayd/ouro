@@ -42,6 +42,7 @@ const Game = function(xCount, yCount) {
 }
 
 
+// resets Game class to initial state
 Game.prototype.resetGameState = function() {
     this.grid = null
     this.crash = false
@@ -53,6 +54,8 @@ Game.prototype.resetGameState = function() {
 }
 
 
+// when snake head collides with apple
+// add to snake body
 Game.prototype._eatApple = function() {
     const isEaten = this.snakeCoords[0] === this.appleCoords[0] && 
                     this.snakeCoords[1] === this.appleCoords[1]
@@ -67,8 +70,9 @@ Game.prototype._eatApple = function() {
 }
 
 
+// when snake head collides into its body
+// set crash to true
 Game.prototype._ateItself = function() {
-
     const collision = this.bodyCoordsStore.some(function (bodyCoords) {
         const sc = JSON.stringify(this.snakeCoords)
         const bc = JSON.stringify(bodyCoords)
@@ -101,8 +105,9 @@ Game.prototype.updateGrid = function() {
 }
 
 
-// updates non-space cell data based on 
-// current direction
+// set snakes next position based on direction
+// and crash conditions.
+// finally updates grid
 Game.prototype.step = function() {
     const [sx, sy] = this.snakeCoords
     // log(this.snakeCoords)
@@ -158,6 +163,7 @@ Game.prototype.init = function() {
 }
 
 
+// sets apple on random grid cell
 Game.prototype.placeApple = function() {
     // TODO: add avoidance of snake 
     // body as well as snake head
@@ -172,6 +178,7 @@ Game.prototype.placeApple = function() {
     
     this.grid[ay][ax] = cell.apple
 }
+
 
 // fills grid with initial(pre live)
 // snake and appleCoords cells
@@ -191,7 +198,8 @@ Game.prototype.placeSnakeAndApple = function() {
 
 
 // sets grid to blank slate(all 0's 
-// which represent empty space)
+// which represent empty space).
+// updates grid
 Game.prototype.blankBoard = function() {
     this.grid = []
 
