@@ -5,6 +5,9 @@ import Board from './gui/board'
 import '../css/main.css'
 import './utils'
 
+
+console.log(null ?? 'hello')
+
 window.onload = e => {
     const G = new Game(20, 20)
     const B = new Board(300, 300, G)
