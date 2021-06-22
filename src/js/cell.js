@@ -7,3 +7,5 @@ const cell = Object.freeze({
     body: 11,
     apple: 2
 })
+
+export default cell

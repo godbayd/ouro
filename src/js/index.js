@@ -1,4 +1,9 @@
 console.clear()
+import {log, select} from './utils'
+import Game from './game'
+import Board from './gui/board'
+import '../css/main.css'
+import './utils'
 
 window.onload = e => {
     const G = new Game(20, 20)

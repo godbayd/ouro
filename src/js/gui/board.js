@@ -1,3 +1,5 @@
+import {log, select} from './../utils'
+import cell from '../cell'
 // TODO: make all internal methods private
 // TODO: (possible) add a ui class to handle DOM ops
 
@@ -157,3 +159,5 @@ Board.prototype.init = function() {
     this._bindListeners()
 }
 
+
+export default Board

@@ -1,3 +1,6 @@
+import cell from './cell'
+import Board from './gui/board'
+import {log} from './utils'
 /*
  * GAME
  *
@@ -270,4 +273,4 @@ Game.prototype._placeSnakeAndApple = function() {
 }
 
 
-
+export default Game
