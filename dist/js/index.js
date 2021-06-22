@@ -18,6 +18,7 @@ window.onload = e => {
         G.resetGameState()
         G.init()
         B.paint(G.grid)
+        select('#count').innerText = G.count
     }
 }
 

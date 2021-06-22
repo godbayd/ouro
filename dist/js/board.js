@@ -46,6 +46,7 @@ Board.prototype.gameLoop = function() {
     }
     this.game.step()
     this.paint()
+    select('#count').innerText = this.game.count
 }
 
 
