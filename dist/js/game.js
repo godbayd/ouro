@@ -1,4 +1,3 @@
-
 // generates random numbers within inclusive range
 // taken from mozilla mdn web docs
 function getRandomIntInclusive(min, max) {
@@ -9,6 +8,7 @@ function getRandomIntInclusive(min, max) {
 
 
 
+// TODO: make apple coords avoid snake body as well.
 // generates random coors for apple,
 // makes sure that snake and apple
 // dont collide on inital(pre live) render
@@ -56,7 +56,7 @@ Game.prototype.resetGameState = function() {
 
 // when snake head collides with apple
 // add to snake body
-Game.prototype._eatApple = function() {
+Game.prototype.__handleEatApple = function() {
     const isEaten = this.snakeCoords[0] === this.appleCoords[0] && 
                     this.snakeCoords[1] === this.appleCoords[1]
     if (isEaten) {
@@ -64,7 +64,7 @@ Game.prototype._eatApple = function() {
         
         // add to snake body
         this.bodyCoordsStore.push([...this.snakeCoords])
-        this.placeApple()
+        this._placeApple()
         this.count++
     }
 }
@@ -88,7 +88,8 @@ Game.prototype._ateItself = function() {
 
 
 // fills grid with new data
-Game.prototype.updateGrid = function() {
+// based on updated state
+Game.prototype._updateGrid = function() {
     const [sx, sy] = this.snakeCoords
     const [ax, ay] = this.appleCoords
     
@@ -97,30 +98,36 @@ Game.prototype.updateGrid = function() {
     this.grid[sy][sx] = cell.head
     this.grid[ay][ax] = cell.apple
     
-    this._eatApple()
+    this.__handleEatApple()
+
     this.bodyCoordsStore.forEach(function([_sx, _sy]) {
-        // log(this)
         this.grid[_sy][_sx] = cell.body
     }, this)
 }
 
 
-// set snakes next position based on direction
-// and crash conditions.
-// finally updates grid
-Game.prototype.step = function() {
-    const [sx, sy] = this.snakeCoords
-    // log(this.snakeCoords)
-    // log(
-    //     this.bodyCoordsStore.reduce((acc, coords) => {
-    //         return acc + ', ' + JSON.stringify(coords)
-    //     }, 'store: ')
-    // )
-    
+Game.prototype._updateSnakeBody = function() {
+    // add to snake body
     this.bodyCoordsStore.push([...this.snakeCoords])
     this.bodyCoordsStore.shift()
+}
 
 
+// set snakes next position(head and body) based on 
+// direction and crash conditions.
+// finally updates grid
+Game.prototype.step = function() {
+    if (this.crash) {
+        return
+    }
+    
+    const [sx, sy] = this.snakeCoords
+    
+    this._updateSnakeBody()
+
+    // sets next snake head position based on 
+    // direction if it's inbound
+    // else set crash to true
     switch(this.direction) {
         case "ArrowUp":
             if (sy > 0) {
@@ -151,12 +158,15 @@ Game.prototype.step = function() {
             }
             break
     }
+    
     this._ateItself()
-    this.updateGrid()
+
+    this._updateGrid()
 }
 
 
-
+// sets grid to have apple and snake head 
+// in starting positions
 Game.prototype.init = function() {
     this.blankBoard()
     this.placeSnakeAndApple()
@@ -164,7 +174,7 @@ Game.prototype.init = function() {
 
 
 // sets apple on random grid cell
-Game.prototype.placeApple = function() {
+Game.prototype._placeApple = function() {
     // TODO: add avoidance of snake 
     // body as well as snake head
     // in getRandomCoords()
@@ -192,7 +202,7 @@ Game.prototype.placeSnakeAndApple = function() {
     
     this.grid[sy][sx] = cell.head
     
-    this.placeApple()
+    this._placeApple()
 }
 
 
