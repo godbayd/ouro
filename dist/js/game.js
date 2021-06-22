@@ -18,11 +18,11 @@
 
 
 
-// TODO: make apple coords avoid snake body as well.
-// generates random coors for apple,
+// FIXME: sometimes creates an infinite loop
+// generates random coords for apple,
 // makes sure that snake and apple
-// dont collide on inital(pre live) render
-const getRandomCoords = (xCount, yCount, [notX, notY]) => {
+// don't collide on inital(pre live) render
+const getRandomCoords = (xCount, yCount, avoidCoords) => {
     // generates random numbers within inclusive range
     // taken from mozilla mdn web docs
     function getRandomIntInclusive(min, max) {
@@ -33,8 +33,16 @@ const getRandomCoords = (xCount, yCount, [notX, notY]) => {
 
     let randX = getRandomIntInclusive(0, xCount - 1)
     let randY = getRandomIntInclusive(0, yCount - 1)
+
     
-    while ((randX === notX) && (randY === notY)) {
+    const doesCollide = (_appleCoords) => avoidCoords.some(coords => {
+        const snakeCoords = JSON.stringify(coords)
+        const appleCoords = JSON.stringify(_appleCoords)
+
+        return snakeCoords === appleCoords
+    })
+
+    while (doesCollide([randX, randY])) {
         randX = getRandomIntInclusive(0, xCount - 1)
         randY = getRandomIntInclusive(0, yCount - 1)
     }
@@ -192,7 +200,7 @@ Game.prototype._placeApple = function() {
     this.appleCoords = getRandomCoords(
         this.xCount, 
         this.yCount, 
-        this.snakeCoords
+        [this.snakeCoords, ...this.bodyCoordsStore]
     )
     
     const [ax, ay] = this.appleCoords
