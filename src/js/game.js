@@ -8,7 +8,7 @@ import {log} from './utils'
  * init():void
  * step():void
  * resetGameState():void
- * blankBoard():void
+ * blankGrid():void
  *
  * ----internal
  * _updateGrid():void
@@ -77,7 +77,7 @@ const Game = function(xCount, yCount) {
 // sets grid to have apple and snake head 
 // in starting positions
 Game.prototype.init = function() {
-    this.blankBoard()
+    this.blankGrid()
     this._placeSnakeAndApple()
 }
 
@@ -157,7 +157,7 @@ Game.prototype.resetGameState = function() {
 // sets grid to blank slate(all 0's 
 // which represent empty space).
 // updates grid
-Game.prototype.blankBoard = function() {
+Game.prototype.blankGrid = function() {
     this.grid = []
 
     const row = []
@@ -180,7 +180,7 @@ Game.prototype._updateGrid = function() {
     const [sx, sy] = this.snakeCoords
     const [ax, ay] = this.appleCoords
     
-    this.blankBoard()
+    this.blankGrid()
     
     this.grid[sy][sx] = cell.head
     this.grid[ay][ax] = cell.apple
