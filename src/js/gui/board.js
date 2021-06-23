@@ -1,6 +1,10 @@
 import {log, select} from './../utils'
 import cell from '../cell'
 
+// TODO: move ui stuff into demo folder. Isolate game logic stuff to be
+// then focal point
+
+
 // state kept to track whether direction has been set within
 // step or not so that one direction chain per 
 // interval can be enforced.
