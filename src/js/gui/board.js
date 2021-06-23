@@ -1,7 +1,5 @@
 import {log, select} from './../utils'
 import cell from '../cell'
-// TODO: make all internal methods private
-// TODO: (possible) add a ui class to handle DOM ops
 
 // state kept to track whether direction has been set within
 // step or not so that one direction chain per 
