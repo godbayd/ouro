@@ -1,6 +1,4 @@
-import cell from './cell'
 import Board from './gui/board'
-import {log} from './utils'
 /*
  * GAME
  *
@@ -54,6 +52,14 @@ const getRandomCoords = (xCount, yCount, avoidCoords) => {
 }
 
 
+// provides clearer semantics for 
+// grid values
+const cell = Object.freeze({
+    space: 0,
+    head: 1,
+    body: 11,
+    apple: 2
+})
 
 
 // (x,y)Count are the number of cells on x and y axis
@@ -69,7 +75,12 @@ const Game = function(xCount, yCount) {
     this.bodyCoordsStore = []
     this.direction = null
     this.count = 0
+    this.cell = cell
 }
+
+
+
+
 
 
 
@@ -229,7 +240,7 @@ Game.prototype.__handleEatApple = function() {
     const isEaten = this.snakeCoords[0] === this.appleCoords[0] && 
                     this.snakeCoords[1] === this.appleCoords[1]
     if (isEaten) {
-        log(`*** eaten at: ${JSON.stringify(this.snakeCoords)}`)
+        console.log(`*** eaten at: ${JSON.stringify(this.snakeCoords)}`)
         
         // add to snake body
         this.bodyCoordsStore.push([...this.snakeCoords])

@@ -1,7 +1,4 @@
-import {log, select} from './../utils'
-import cell from '../cell'
-
-// TODO: move ui stuff into demo folder. Isolate game logic stuff to be
+// TODO: move ui stuff into demo folder. Isolate game console.logic stuff to be
 // then focal point
 
 
@@ -15,7 +12,7 @@ const Board = function(width, height, game) {
     this.height = height
     this.game = game
 
-    this.canv = select('#canv')
+    this.canv = document.querySelector('#canv')
     this.canv.width = this.width
     this.canv.height = this.height
 
@@ -39,7 +36,7 @@ Board.prototype.spawn = function() {
 // keep stepping
 // else stop interval
 Board.prototype.gameLoop = function() {
-    // log('(interval)')
+    // console.log('(interval)')
 
     // allow for direction to change
     // at the start of every interval
@@ -50,7 +47,7 @@ Board.prototype.gameLoop = function() {
     }
     this.game.step()
     this.paint()
-    select('#count').innerText = this.game.count
+    document.querySelector('#count').innerText = this.game.count
 }
 
 
@@ -60,7 +57,7 @@ Board.prototype.gameLoop = function() {
 // the direct opposite direction
 Board.prototype.handleArrowKeyDown = function({key}) {
     if (!directionAlreadyChanged && key !== this.game.direction) {
-        log(key)
+        console.log(key)
         switch(key) {
             case "ArrowUp":
                 directionAlreadyChanged = true
@@ -107,6 +104,8 @@ Board.prototype._bindListeners = function() {
 
 
 Board.prototype._cellColor = function(c) {
+    const {cell} = this.game
+
     switch(c) {
         case cell.space:
             return 'transparent'
