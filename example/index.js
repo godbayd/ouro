@@ -1,10 +1,6 @@
-console.clear()
-import Game from './game'
-import Board from './gui/board'
-import '../css/main.css'
-
-
-console.log(null ?? 'hello')
+import Game from '../src/snake'
+import Board from './js/board'
+import './css/main.css'
 
 window.onload = e => {
     const G = new Game(20, 20)
@@ -19,7 +15,7 @@ window.onload = e => {
     // unofficial
     document.querySelector('#reset').onclick = () => {
         // NOTE: this series of methods may do
-        // well consilidated into a single method
+        // well, consilidated into a single method
         // for re use
         G.resetGameState()
         G.init()

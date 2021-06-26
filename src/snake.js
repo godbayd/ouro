@@ -1,4 +1,3 @@
-import Board from './gui/board'
 /*
  * GAME
  *
