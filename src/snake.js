@@ -106,6 +106,7 @@ Game.prototype.step = function() {
     
     this._updateSnakeBody()
 
+    // TODO: make switch match generic direction
     // sets next snake head position based on 
     // direction if it's inbound
     // else set crash to true
