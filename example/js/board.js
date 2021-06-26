@@ -43,6 +43,8 @@ Board.prototype.gameLoop = function() {
     directionAlreadyChanged = false
     
     if (this.game.crash) {
+        // TODO: set localstorage high score 
+        // if it exceeds existing one.
         return clearInterval(this.gameInterval)
     }
     this.game.step()
