@@ -32,6 +32,24 @@ Board.prototype.spawn = function() {
     this.paint()
 }
 
+
+
+
+// Store new high score in local storage
+Board.prototype._handleNewHighScore = function() {
+    const oldHighScore = parseInt(localStorage.getItem('snakeHighScore') ?? 0, 10)
+
+    if (!oldHighScore || (this.game.count > oldHighScore)) {
+        localStorage.setItem('snakeHighScore', this.game.count)
+    }
+
+    const highScore = localStorage.getItem('snakeHighScore') ?? '0'
+    document.querySelector('#high-score').innerText = highScore
+}
+
+
+
+
 // when game hasn't crashed 
 // keep stepping
 // else stop interval
@@ -45,6 +63,9 @@ Board.prototype.gameLoop = function() {
     if (this.game.crash) {
         // TODO: set localstorage high score 
         // if it exceeds existing one.
+        this._handleNewHighScore()
+
+
         return clearInterval(this.gameInterval)
     }
     this.game.step()

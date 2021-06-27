@@ -21,6 +21,8 @@ window.onload = e => {
         G.init()
         B.paint(G.grid)
         document.querySelector('#count').innerText = G.count
+
+
     }
 }
 
