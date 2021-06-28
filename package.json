@@ -2,7 +2,7 @@
   "name": "snake",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/snake.js",
   "scripts": {
     "test": "npx jest --watch",
     "build": "npx webpack --config webpack.prod.js",

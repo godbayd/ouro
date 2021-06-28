@@ -7,7 +7,11 @@ const config = {
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: 'snake.js',
-        library: 'snake'
+        globalObject: 'this',
+        library: {
+            name: 'snake',
+            type: 'umd'
+        }
     }
 }
 
