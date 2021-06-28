@@ -12,6 +12,9 @@ window.onload = e => {
     
     document.querySelector('#count').innerText = G.count
 
+    const highScore = parseInt(localStorage.getItem('snakeHighScore'), 10) ?? '0'
+    document.querySelector('#high-score').innerText = highScore
+
     // unofficial
     document.querySelector('#reset').onclick = () => {
         // NOTE: this series of methods may do
