@@ -94,6 +94,28 @@ Game.prototype.init = function() {
 
 
 
+Game.prototype.setDirection = function(dir) {
+    const sDir = this.direction
+
+    const badDirection = sDir === dir ||
+        (sDir === 'ArrowLeft') && (dir === 'ArrowRight') ||
+        (sDir === 'ArrowRight') && (dir === 'ArrowLeft') ||
+        (sDir === 'ArrowUp') && (dir === 'ArrowDown') ||
+        (sDir === 'ArrowDown') && (dir === 'ArrowUp');
+
+    if (!badDirection) {
+        this.direction = dir
+
+    } else {
+        return 
+    }
+    
+}
+
+
+
+
+
 // set snakes next position(head and body) based on 
 // direction and crash conditions.
 // finally updates grid
