@@ -6,6 +6,7 @@
  * step():void
  * resetGameState():void
  * blankGrid():void
+ * setDirection(string):void
  *
  * ----internal
  * _updateGrid():void
