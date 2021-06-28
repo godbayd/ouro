@@ -4,7 +4,7 @@ import './css/main.css'
 
 window.onload = e => {
     const G = new Game(20, 20)
-    const B = new Board(300, 300, G, 100)
+    const B = new Board(G, 300, 300, 100)
 
     G.init()
     B.init()

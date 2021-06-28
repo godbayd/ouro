@@ -7,7 +7,7 @@
 // interval can be enforced.
 let directionAlreadyChanged = false
 
-const Board = function(width, height, game, speed) {
+const Board = function(game, width, height, speed) {
     this.width  = width
     this.height = height
     this.game = game
