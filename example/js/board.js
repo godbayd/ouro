@@ -2,9 +2,20 @@
 // then focal point
 
 
+
+// IMPORTANT: 
 // state kept to track whether direction has been set within
 // step or not so that one direction chain per 
 // interval can be enforced.
+// NOTE: the issue this solves is preventing a timing hack
+// If cell is moving right and user quickly(in the same interval) 
+// hits up and then left, this will allow user to 
+// cheat the |no directly opposing direction| rule. 
+// This is because it will be read by program as having come from
+// up rather than right. 
+// This |directionAlreadyChanged| variable is used to
+// enforce 1 direction change per interval so that this hack
+// cannot work
 let directionAlreadyChanged = false
 
 const Board = function(game, width, height, speed) {
