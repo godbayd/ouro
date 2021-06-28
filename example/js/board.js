@@ -7,10 +7,11 @@
 // interval can be enforced.
 let directionAlreadyChanged = false
 
-const Board = function(width, height, game) {
+const Board = function(width, height, game, speed) {
     this.width  = width
     this.height = height
     this.game = game
+    this.speed = speed
 
     this.canv = document.querySelector('#canv')
     this.canv.width = this.width
@@ -28,7 +29,7 @@ const Board = function(width, height, game) {
 
 // start game loop
 Board.prototype.spawn = function() {
-    this.gameInterval = setInterval(this.gameLoop, 100)
+    this.gameInterval = setInterval(this.gameLoop, this.speed)
     this.paint()
 }
 
