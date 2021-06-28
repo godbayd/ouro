@@ -77,35 +77,20 @@ Board.prototype.gameLoop = function() {
 // constrains directions to not move in
 // the direct opposite direction
 Board.prototype.handleArrowKeyDown = function({key}) {
-    if (!directionAlreadyChanged && key !== this.game.direction) {
-        console.log(key)
-        switch(key) {
-            case "ArrowUp":
-                directionAlreadyChanged = true
-                if (this.game.direction !== "ArrowDown") {
-                    this.game.direction = key
-                }
-                break
-            case "ArrowDown":
-                directionAlreadyChanged = true
-                if (this.game.direction !== "ArrowUp") {
-                    this.game.direction = key
-                }
-                break
-            case "ArrowLeft":
-                directionAlreadyChanged = true
-                if (this.game.direction !== "ArrowRight") {
-                    this.game.direction = key
-                }
-                break
-            case "ArrowRight":
-                directionAlreadyChanged = true
-                if (this.game.direction !== "ArrowLeft") {
-                    this.game.direction = key
-                }
-                break
+
+    if (!directionAlreadyChanged) {
+        const isValidDirection = [
+            'ArrowUp', 
+            'ArrowDown', 
+            'ArrowLeft',  
+            'ArrowRight'
+        ].includes(key)
+
+        if (isValidDirection) {
+            directionAlreadyChanged = true
+
+            this.game.setDirection(key)
         }
-            
     }
     
     
