@@ -2,6 +2,7 @@ import {_updateGrid} from './internals/_updateGrid'
 import {_placeApple} from './internals/_placeApple'
 import {_updateSnakeBody} from './internals/_updateSnakeBody'
 import {_handleEatApple} from './internals/_handleEatApple.js'
+import {_ateItself} from './internals/_ateItself.js'
 
 
 /*
@@ -54,6 +55,7 @@ const Game = function(xCount, yCount) {
     this._placeApple = _placeApple.bind(this)
     this._updateSnakeBody = _updateSnakeBody.bind(this)
     this._handleEatApple = _handleEatApple.bind(this)
+    this._ateItself = _ateItself.bind(this)
 }
 
 
@@ -198,20 +200,6 @@ Game.prototype.blankGrid = function() {
 
 
 
-// when snake head collides into its body
-// set crash to true
-Game.prototype._ateItself = function() {
-    const collision = this.bodyCoordsStore.some(function (bodyCoords) {
-        const sc = JSON.stringify(this.snakeCoords)
-        const bc = JSON.stringify(bodyCoords)
-
-        return bc === sc
-    }, this)
-
-    if (collision) {
-        this.crash = true
-    }
-}
 
 
 
