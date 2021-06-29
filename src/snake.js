@@ -10,7 +10,8 @@ import {
 import {
     step,
     setDirection,
-    resetGameState
+    resetGameState,
+    blankGrid
 } from './exposed'
 
 /*
@@ -62,6 +63,7 @@ const Game = function(xCount, yCount) {
     this.step = step.bind(this)
     this.setDirection = setDirection.bind(this)
     this.resetGameState = resetGameState.bind(this)
+    this.blankGrid = blankGrid.bind(this)
 
 
     this._updateGrid = _updateGrid.bind(this)
@@ -85,27 +87,6 @@ Game.prototype.init = function() {
 
 
 
-
-
-
-
-
-// sets grid to blank slate(all 0's 
-// which represent empty space).
-// updates grid
-Game.prototype.blankGrid = function() {
-    this.grid = []
-
-    const row = []
-
-    for (let i = 0; i < this.xCount; i++) {
-        row.push(cell.space)
-    }
-
-    for (let i = 0; i < this.yCount; i++) {
-        this.grid.push([...row])
-    }
-}
 
 
 export default Game
