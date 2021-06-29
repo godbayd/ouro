@@ -1,5 +1,8 @@
 import {_updateGrid} from './internals/_updateGrid'
 import {_placeApple} from './internals/_placeApple'
+import {_updateSnakeBody} from './internals/_updateSnakeBody'
+
+
 /*
  * GAME
  *
@@ -19,39 +22,6 @@ import {_placeApple} from './internals/_placeApple'
  * _placeSnakeAndApple():void
  */
 
-
-
-// FIXME: sometimes creates an infinite loop
-// generates random coords for apple,
-// makes sure that snake and apple
-// don't collide on inital(pre live) render
-const getRandomCoords = (xCount, yCount, avoidCoords) => {
-    // generates random numbers within inclusive range
-    // taken from mozilla mdn web docs
-    function getRandomIntInclusive(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1) + min);
-    }
-
-    let randX = getRandomIntInclusive(0, xCount - 1)
-    let randY = getRandomIntInclusive(0, yCount - 1)
-
-    
-    const doesCollide = (_appleCoords) => avoidCoords.some(coords => {
-        const snakeCoords = JSON.stringify(coords)
-        const appleCoords = JSON.stringify(_appleCoords)
-
-        return snakeCoords === appleCoords
-    })
-
-    while (doesCollide([randX, randY])) {
-        randX = getRandomIntInclusive(0, xCount - 1)
-        randY = getRandomIntInclusive(0, yCount - 1)
-    }
-    
-    return [randX, randY]
-}
 
 
 // provides clearer semantics for 
@@ -81,6 +51,7 @@ const Game = function(xCount, yCount) {
 
     this._updateGrid = _updateGrid.bind(this)
     this._placeApple = _placeApple.bind(this)
+    this._updateSnakeBody = _updateSnakeBody.bind(this)
 }
 
 
@@ -219,11 +190,6 @@ Game.prototype.blankGrid = function() {
 
 
 
-Game.prototype._updateSnakeBody = function() {
-    // add to snake body
-    this.bodyCoordsStore.push([...this.snakeCoords])
-    this.bodyCoordsStore.shift()
-}
 
 
 
