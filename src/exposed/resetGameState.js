@@ -8,6 +8,8 @@ export function resetGameState() {
     this.bodyCoordsStore = []
     this.direction = null
     this.count = 0
+    this._loop = false
+    this.__alreadyChangedDirection = false
 }
 
 

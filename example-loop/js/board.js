@@ -3,21 +3,6 @@
 
 
 
-// IMPORTANT: 
-// state kept to track whether direction has been set within
-// step or not so that one direction chain per 
-// interval can be enforced.
-// NOTE: the issue this solves is preventing a timing hack
-// If cell is moving right and user quickly(in the same interval) 
-// hits up and then left, this will allow user to 
-// cheat the |no directly opposing direction| rule. 
-// This is because it will be read by program as having come from
-// up rather than right. 
-// This |directionAlreadyChanged| variable is used to
-// enforce 1 direction change per interval so that this hack
-// cannot work
-let directionAlreadyChanged = false
-
 const Board = function(game, width, height, speed) {
     this.width  = width
     this.height = height
@@ -32,18 +17,7 @@ const Board = function(game, width, height, speed) {
     this.canv.style.backgroundColor = 'white'
     
     this.handleArrowKeyDown = this.handleArrowKeyDown.bind(this)
-    this.gameLoop = this.gameLoop.bind(this)
-    
-    this.gameInterval = null
 }
-
-
-// start game loop
-Board.prototype.spawn = function() {
-    this.gameInterval = setInterval(this.gameLoop, this.speed)
-    this.paint()
-}
-
 
 
 
@@ -62,61 +36,33 @@ Board.prototype._handleNewHighScore = function() {
 
 
 
-// when game hasn't crashed 
-// keep stepping
-// else stop interval
-Board.prototype.gameLoop = function() {
-    // console.log('(interval)')
-
-    // allow for direction to change
-    // at the start of every interval
-    directionAlreadyChanged = false
-    
-    if (this.game.crash) {
-        this._handleNewHighScore()
-
-
-        return clearInterval(this.gameInterval)
-    }
-    this.game.step()
-    this.paint()
-    document.querySelector('#count').innerText = this.game.count
-}
-
-
-
 // Change direction via keydown event
 // constrains directions to not move in
 // the direct opposite direction
 Board.prototype.handleArrowKeyDown = function({key}) {
 
-    if (!directionAlreadyChanged) {
-        const isValidDirection = [
-            'ArrowUp', 
-            'ArrowDown', 
-            'ArrowLeft',  
-            'ArrowRight'
-        ].includes(key)
+    const isValidDirection = [
+        'ArrowUp', 
+        'ArrowDown', 
+        'ArrowLeft',  
+        'ArrowRight'
+    ].includes(key)
 
-        if (isValidDirection) {
-            directionAlreadyChanged = true
-
-            this.game.setDirection(key)
-        }
+    if (isValidDirection) {
+        this.game.setDirection(key)
     }
     
     
     // when game hasn't started yet
     // initialize game loop
-    if (!this.game.live) {
-        this.game.live = true
-        this.spawn()
+    if (!this.game.loop) {
+        this.game.loop = true
     }
 }
 
 
 
-Board.prototype._bindListeners = function() {
+Board.prototype.bindListeners = function() {
     window.addEventListener('keydown', this.handleArrowKeyDown)
 }
 
@@ -171,12 +117,6 @@ Board.prototype.paint = function(grid) {
     }, this)
 }
 
-
-
-
-Board.prototype.init = function() {
-    this._bindListeners()
-}
 
 
 export default Board

@@ -7,25 +7,37 @@ window.onload = e => {
     const B = new Board(G, 300, 300, 100)
 
     G.init()
-    B.init()
-    B.paint(G.grid)
-    
-    document.querySelector('#count').innerText = G.count
+    B.bindListeners()
+    B.paint()
 
-    const highScore = parseInt(localStorage.getItem('snakeHighScore'), 10) ?? '0'
-    document.querySelector('#high-score').innerText = highScore
+    G.gameLoop(function() {
+        const countEl = document.querySelector('#count')
+
+        if (String(countEl.innerText) !== G.count) {
+            countEl.innerText = G.count
+        }
+
+
+        const highScore = parseInt(localStorage.getItem('snakeHighScore'), 10) ?? '0'
+
+        const highScoreEl = document.querySelector('#high-score')
+
+        if (highScoreEl.innerText !== highScore) {
+            highScoreEl.innerText = highScore
+        }
+
+        B.paint()
+    }).start()
+    
 
     // unofficial
-    document.querySelector('#reset').onclick = () => {
-        // NOTE: this series of methods may do
-        // well, consilidated into a single method
-        // for re use
+    const resetBtn = document.querySelector('#reset')
+    resetBtn.onclick = () => {
         G.resetGameState()
+        G.start()
         G.init()
         B.paint(G.grid)
         document.querySelector('#count').innerText = G.count
-
-
     }
 }
 

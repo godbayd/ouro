@@ -3,6 +3,8 @@
 // finally updates grid
 export function step() {
     if (this.crash) {
+        if(this._interval) this.stop()
+
         return
     }
     

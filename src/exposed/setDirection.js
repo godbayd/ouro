@@ -7,7 +7,8 @@ export function setDirection(dir) {
         (sDir === 'ArrowUp') && (dir === 'ArrowDown') ||
         (sDir === 'ArrowDown') && (dir === 'ArrowUp');
 
-    if (!badDirection) {
+    if (!badDirection && !this._alreadyChangedDirection) {
+        this._alreadyChangedDirection = true
         this.direction = dir
 
     } else {

@@ -46,9 +46,10 @@ const cell = Object.freeze({
 
 
 // (x,y)Count are the number of cells on x and y axis
-const Game = function(xCount, yCount) {
+const Game = function(xCount, yCount, speed) {
     this.xCount = xCount
     this.yCount = yCount
+    this.speed = speed || 100
     
     this.grid = null
     this.crash = false
@@ -59,6 +60,9 @@ const Game = function(xCount, yCount) {
     this.direction = null
     this.count = 0
     this.cell = cell
+
+    this._loop = false
+    this._alreadyChangedDirection = false
 
     this.step = step.bind(this)
     this.setDirection = setDirection.bind(this)
@@ -72,6 +76,34 @@ const Game = function(xCount, yCount) {
     this._handleEatApple = _handleEatApple.bind(this)
     this._ateItself = _ateItself.bind(this)
     this._placeSnakeAndApple = _placeSnakeAndApple.bind(this)
+}
+
+
+Game.prototype.gameLoop = function(cb) {
+    const _intervalCB = function() {
+
+        this._alreadyChangedDirection = false
+
+        if (this._loop) {
+            this.step()
+            cb(this)
+        }
+    }
+
+    this._interval = setInterval(_intervalCB.bind(this), 100)
+    return this
+}
+
+Game.prototype.start = function() {
+    this._loop = true
+}
+
+Game.prototype.stop = function() {
+    this._loop = false
+}
+
+Game.prototype.killLoop = function() {
+    clearInterval(this._interval)
 }
 
 
