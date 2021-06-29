@@ -1,4 +1,5 @@
 import {_updateGrid} from './internals/_updateGrid'
+import {_placeApple} from './internals/_placeApple'
 /*
  * GAME
  *
@@ -79,6 +80,7 @@ const Game = function(xCount, yCount) {
     this.cell = cell
 
     this._updateGrid = _updateGrid.bind(this)
+    this._placeApple = _placeApple.bind(this)
 }
 
 
@@ -213,21 +215,6 @@ Game.prototype.blankGrid = function() {
 
 
 
-// sets apple on random grid cell
-Game.prototype._placeApple = function() {
-    // TODO: add avoidance of snake 
-    // body as well as snake head
-    // in getRandomCoords()
-    this.appleCoords = getRandomCoords(
-        this.xCount, 
-        this.yCount, 
-        [this.snakeCoords, ...this.bodyCoordsStore]
-    )
-    
-    const [ax, ay] = this.appleCoords
-    
-    this.grid[ay][ax] = cell.apple
-}
 
 
 
