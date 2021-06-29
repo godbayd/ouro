@@ -1,3 +1,4 @@
+import {_updateGrid} from './internals/_updateGrid'
 /*
  * GAME
  *
@@ -76,6 +77,8 @@ const Game = function(xCount, yCount) {
     this.direction = null
     this.count = 0
     this.cell = cell
+
+    this._updateGrid = _updateGrid.bind(this)
 }
 
 
@@ -206,25 +209,6 @@ Game.prototype.blankGrid = function() {
 }
 
 
-
-
-// fills grid with new data
-// based on updated state
-Game.prototype._updateGrid = function() {
-    const [sx, sy] = this.snakeCoords
-    const [ax, ay] = this.appleCoords
-    
-    this.blankGrid()
-    
-    this.grid[sy][sx] = cell.head
-    this.grid[ay][ax] = cell.apple
-    
-    this.__handleEatApple()
-
-    this.bodyCoordsStore.forEach(function([_sx, _sy]) {
-        this.grid[_sy][_sx] = cell.body
-    }, this)
-}
 
 
 
