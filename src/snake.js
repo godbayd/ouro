@@ -93,7 +93,7 @@ Game.prototype.gameLoop = function(cb) {
         }
     }
 
-    this._interval = setInterval(_intervalCB.bind(this), 100)
+    this._interval = setInterval(_intervalCB.bind(this), this.speed)
     return this
 }
 
