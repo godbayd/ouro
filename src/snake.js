@@ -8,7 +8,8 @@ import {
 } from './internals'
 
 import {
-    step
+    step,
+    setDirection
 } from './exposed'
 
 /*
@@ -58,6 +59,7 @@ const Game = function(xCount, yCount) {
     this.cell = cell
 
     this.step = step.bind(this)
+    this.setDirection = setDirection.bind(this)
 
 
     this._updateGrid = _updateGrid.bind(this)
@@ -78,26 +80,6 @@ Game.prototype.init = function() {
     this._placeSnakeAndApple()
 }
 
-
-
-
-Game.prototype.setDirection = function(dir) {
-    const sDir = this.direction
-
-    const badDirection = sDir === dir ||
-        (sDir === 'ArrowLeft') && (dir === 'ArrowRight') ||
-        (sDir === 'ArrowRight') && (dir === 'ArrowLeft') ||
-        (sDir === 'ArrowUp') && (dir === 'ArrowDown') ||
-        (sDir === 'ArrowDown') && (dir === 'ArrowUp');
-
-    if (!badDirection) {
-        this.direction = dir
-
-    } else {
-        return 
-    }
-    
-}
 
 
 

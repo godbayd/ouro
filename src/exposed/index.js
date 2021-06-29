@@ -1,5 +1,7 @@
-import {step} from './step.js'
+import {step} from './step'
+import {setDirection} from './setDirection'
 
 export {
-    step
+    step,
+    setDirection
 }
