@@ -1,9 +1,11 @@
-import {_updateGrid} from './internals/_updateGrid'
-import {_placeApple} from './internals/_placeApple'
-import {_updateSnakeBody} from './internals/_updateSnakeBody'
-import {_handleEatApple} from './internals/_handleEatApple.js'
-import {_ateItself} from './internals/_ateItself.js'
-import {_placeSnakeAndApple} from './internals/_placeSnakeAndApple'
+import {
+    _updateGrid,
+    _placeApple,
+    _updateSnakeBody,
+    _handleEatApple,
+    _ateItself,
+    _placeSnakeAndApple
+} from './internals'
 
 
 /*
