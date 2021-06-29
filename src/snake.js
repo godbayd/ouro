@@ -9,7 +9,8 @@ import {
 
 import {
     step,
-    setDirection
+    setDirection,
+    resetGameState
 } from './exposed'
 
 /*
@@ -60,6 +61,7 @@ const Game = function(xCount, yCount) {
 
     this.step = step.bind(this)
     this.setDirection = setDirection.bind(this)
+    this.resetGameState = resetGameState.bind(this)
 
 
     this._updateGrid = _updateGrid.bind(this)
@@ -84,20 +86,6 @@ Game.prototype.init = function() {
 
 
 
-
-
-
-// resets Game class to initial state
-Game.prototype.resetGameState = function() {
-    this.grid = null
-    this.crash = false
-    this.live = false
-    this.snakeCoords = null
-    this.appleCoords = null
-    this.bodyCoordsStore = []
-    this.direction = null
-    this.count = 0
-}
 
 
 
