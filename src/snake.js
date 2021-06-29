@@ -3,6 +3,7 @@ import {_placeApple} from './internals/_placeApple'
 import {_updateSnakeBody} from './internals/_updateSnakeBody'
 import {_handleEatApple} from './internals/_handleEatApple.js'
 import {_ateItself} from './internals/_ateItself.js'
+import {_placeSnakeAndApple} from './internals/_placeSnakeAndApple'
 
 
 /*
@@ -56,6 +57,7 @@ const Game = function(xCount, yCount) {
     this._updateSnakeBody = _updateSnakeBody.bind(this)
     this._handleEatApple = _handleEatApple.bind(this)
     this._ateItself = _ateItself.bind(this)
+    this._placeSnakeAndApple = _placeSnakeAndApple.bind(this)
 }
 
 
@@ -183,40 +185,6 @@ Game.prototype.blankGrid = function() {
     for (let i = 0; i < this.yCount; i++) {
         this.grid.push([...row])
     }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// fills grid with initial(pre live)
-// snake and appleCoords cells
-Game.prototype._placeSnakeAndApple = function() {
-    // place snake in center
-    const sx = Math.floor((this.xCount-1) / 2)
-    const sy = Math.floor((this.yCount-1) / 2)
-    
-    // update grid
-    this.snakeCoords = [sx, sy]
-    
-    this.grid[sy][sx] = cell.head
-    
-    this._placeApple()
 }
 
 
