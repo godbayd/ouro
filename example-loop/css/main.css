@@ -1,0 +1,18 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+}
+
+
+:root {
+    --black: rgb(10,10,10);
+}
+
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 80px;
+    background-color: var(--black);
+}
