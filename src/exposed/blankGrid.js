@@ -13,6 +13,8 @@ export function blankGrid() {
     for (let i = 0; i < this.yCount; i++) {
         this.grid.push([...row])
     }
+
+    return this
 }
 
 

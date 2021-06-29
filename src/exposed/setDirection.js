@@ -11,8 +11,7 @@ export function setDirection(dir) {
         this._alreadyChangedDirection = true
         this.direction = dir
 
-    } else {
-        return 
-    }
-    
+    } 
+
+    return this
 }

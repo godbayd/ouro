@@ -5,7 +5,7 @@ export function step() {
     if (this.crash) {
         if(this._interval) this.stop()
 
-        return
+        return this
     }
     
     const [sx, sy] = this.snakeCoords
@@ -50,6 +50,8 @@ export function step() {
     this._ateItself()
 
     this._updateGrid()
+
+    return this
 }
 
 

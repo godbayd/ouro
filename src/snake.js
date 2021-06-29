@@ -23,6 +23,9 @@ import {
  * resetGameState():void
  * blankGrid():void
  * setDirection(string):void
+ * start():void
+ * stop():void
+ * killLoop():void
  *
  * ----internal
  * _updateGrid():void
@@ -96,14 +99,17 @@ Game.prototype.gameLoop = function(cb) {
 
 Game.prototype.start = function() {
     this._loop = true
+    return this
 }
 
 Game.prototype.stop = function() {
     this._loop = false
+    return this
 }
 
 Game.prototype.killLoop = function() {
     clearInterval(this._interval)
+    return this
 }
 
 

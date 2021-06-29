@@ -10,11 +10,11 @@ window.onload = e => {
     B.bindListeners()
     B.paint()
 
-    G.gameLoop(function() {
+    G.gameLoop(function({count}) {
         const countEl = document.querySelector('#count')
 
         if (String(countEl.innerText) !== G.count) {
-            countEl.innerText = G.count
+            countEl.innerText = count
         }
 
 
