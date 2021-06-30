@@ -14,6 +14,9 @@ import {
     blankGrid
 } from './exposed'
 
+
+
+// TODO: fine tune what methods to expose. Reset feature may be nice
 /*
  * GAME
  *
