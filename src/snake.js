@@ -101,12 +101,23 @@ Game.prototype.gameLoop = function(cb) {
 }
 
 Game.prototype.start = function() {
-    this._loop = true
+    // check if interval is present
+    // so that it is clear that this method
+    // is specifically for the gameloop feature
+    // which is the only method that should
+    // set this._interval prop
+    if (this._interval) {
+        this._loop = true
+    }
+
     return this
 }
 
 Game.prototype.stop = function() {
-    this._loop = false
+    if (this._interval) {
+        this._loop = false
+    }
+
     return this
 }
 
