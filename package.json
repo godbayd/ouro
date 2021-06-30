@@ -6,7 +6,8 @@
   "scripts": {
     "test": "npx jest --watch",
     "build": "npx webpack --config webpack.prod.js",
-    "example": "webpack serve --config ./example/webpack.example.js"
+    "example": "webpack serve --config ./example/webpack.example.js",
+    "example-loop": "webpack serve --config ./example-loop/webpack.example.js"
   },
   "keywords": [],
   "author": "",
