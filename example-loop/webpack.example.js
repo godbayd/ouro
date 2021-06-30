@@ -16,7 +16,6 @@ const config = {
         ]
     },
     devServer: {
-        port: 3000,
         stats: 'minimal'
     },
     plugins: [
