@@ -12,6 +12,7 @@ window.onload = e => {
 
     Snake.gameLoop(function({count}) {
         B.handleNewHighScore()
+
         const countEl = document.querySelector('#count')
 
         if (String(countEl.innerText) !== Snake.count) {
@@ -34,10 +35,13 @@ window.onload = e => {
     // unofficial
     const resetBtn = document.querySelector('#reset')
     resetBtn.onclick = () => {
-        Snake.resetGameState()
-        Snake.startingGridState()
+        Snake
+            .resetGameState()
+            .startingGridState()
+            .start()
+
         B.paint(Snake.grid)
-        Snake.start()
+
         document.querySelector('#count').innerText = Snake.count
     }
 }

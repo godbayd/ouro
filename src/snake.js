@@ -134,6 +134,8 @@ Game.prototype.killLoop = function() {
 Game.prototype.startingGridState = function() {
     this.blankGrid()
     this._placeSnakeAndApple()
+
+    return this
 }
 
 
