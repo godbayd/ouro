@@ -92,11 +92,13 @@ Game.prototype.gameLoop = function(cb) {
 
         if (this._loop) {
             this.step()
+
             cb(this)
         }
     }
 
     this._interval = setInterval(_intervalCB.bind(this), this.speed)
+
     return this
 }
 
@@ -123,6 +125,7 @@ Game.prototype.stop = function() {
 
 Game.prototype.killLoop = function() {
     clearInterval(this._interval)
+
     return this
 }
 
