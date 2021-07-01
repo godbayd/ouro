@@ -22,8 +22,9 @@ const Board = function(game, width, height, speed) {
 
 
 // Store new high score in local storage
-Board.prototype._handleNewHighScore = function() {
+Board.prototype.handleNewHighScore = function() {
     const oldHighScore = parseInt(localStorage.getItem('snakeHighScore') ?? 0, 10)
+    console.log(`old high score: ${oldHighScore}`)
 
     if (!oldHighScore || (this.game.count > oldHighScore)) {
         localStorage.setItem('snakeHighScore', this.game.count)

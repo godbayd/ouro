@@ -131,7 +131,7 @@ Game.prototype.killLoop = function() {
 
 // sets grid to have apple and snake head 
 // in starting positions
-Game.prototype.init = function() {
+Game.prototype.startingState = function() {
     this.blankGrid()
     this._placeSnakeAndApple()
 }
