@@ -18,10 +18,10 @@ import {
 
 // TODO: fine tune what methods to expose. Reset feature may be nice
 /*
- * GAME
+ * Game
  *
  * ----exposed
- * init():void
+ * startingGridState():void
  * step():void
  * resetGameState():void
  * blankGrid():void
@@ -131,7 +131,7 @@ Game.prototype.killLoop = function() {
 
 // sets grid to have apple and snake head 
 // in starting positions
-Game.prototype.startingState = function() {
+Game.prototype.startingGridState = function() {
     this.blankGrid()
     this._placeSnakeAndApple()
 }

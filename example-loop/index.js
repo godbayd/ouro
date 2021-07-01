@@ -3,18 +3,18 @@ import Board from './js/board'
 import './css/main.css'
 
 window.onload = e => {
-    const G = new Game(20, 20)
-    const B = new Board(G, 300, 300, 100)
+    const Snake = new Game(20, 20)
+    const B = new Board(Snake, 300, 300, 100)
 
-    G.startingState()
+    Snake.startingGridState()
     B.bindListeners()
     B.paint()
 
-    G.gameLoop(function({count}) {
+    Snake.gameLoop(function({count}) {
         B.handleNewHighScore()
         const countEl = document.querySelector('#count')
 
-        if (String(countEl.innerText) !== G.count) {
+        if (String(countEl.innerText) !== Snake.count) {
             countEl.innerText = count
         }
 
@@ -34,11 +34,11 @@ window.onload = e => {
     // unofficial
     const resetBtn = document.querySelector('#reset')
     resetBtn.onclick = () => {
-        G.resetGameState()
-        G.start()
-        G.startingState()
-        B.paint(G.grid)
-        document.querySelector('#count').innerText = G.count
+        Snake.resetGameState()
+        Snake.startingGridState()
+        B.paint(Snake.grid)
+        Snake.start()
+        document.querySelector('#count').innerText = Snake.count
     }
 }
 
