@@ -11,6 +11,7 @@ window.onload = e => {
     B.paint()
 
     G.gameLoop(function({count}) {
+        B.handleNewHighScore()
         const countEl = document.querySelector('#count')
 
         if (String(countEl.innerText) !== G.count) {
