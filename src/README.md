@@ -3,7 +3,20 @@
 
 Ouro is a library that assists in creating snake game applications.The Business logic is handled in a set of exposed methods that allows for users to bring in behaviors as needed without needing to get too mired in the details.
 
+## Main
+**instance:** `new Ouro(xCount, yCount, speed)`
+* **params**
+    * xCount: string
+        * defines the number of columns in the grid
+    * yCount: string
+        * defines the number of rows in the grid
+    * speed: number(optional)
+        * If game loop is being used, speed defines the number of miliseconds per frame
+
+
 ## Exposed Methods
+
+* **gameLoop():** Creates an interval and accepts a callback thats first and only parameter will have in it the state, current to each interval. Note that the interval is held within the main object internally, so the running state is in effect and accessibly outside of the callback.
 
 * **`step()`:** Probably the most crucial of the methods. `step()` takes in the current state of the grid and updates the snake and snake body, based on the current direction property(set by the method: `setDirection()`). This would normally be used within a game loop and aids in moving the snake - step by step - in an animation.
 
@@ -34,23 +47,24 @@ Ouro is a library that assists in creating snake game applications.The Business 
 
 
 
+<!--
+Game
 
- * Game
- *
- * ----exposed
- * `startingGridState()`:void
- * `step()`:void
- * `resetGameState()`:void
- * `blankGrid()`:void
- * setDirection(string):void
- * `start()`:void
- * `stop()`:void
- * `killLoop()`:void
- *
- * ----internal
- * `_updateGrid()`:void
- * `_placeApple()`:void
- * `_updateSnakeBody()`:void
- * `_handleEatApple()`:void
- * `_ateItself()`:void
- * `_placeSnakeAndApple()`:void
+----exposed
+`startingGridState()`:void
+`step()`:void
+`resetGameState()`:void
+`blankGrid()`:void
+setDirection(string):void
+`start()`:void
+`stop()`:void
+`killLoop()`:void
+
+----internal
+`_updateGrid()`:void
+`_placeApple()`:void
+`_updateSnakeBody()`:void
+`_handleEatApple()`:void
+`_ateItself()`:void
+`_placeSnakeAndApple()`:void
+-->
