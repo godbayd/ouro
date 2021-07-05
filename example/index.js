@@ -19,6 +19,7 @@ window.onload = e => {
     document.querySelector('#reset').onclick = () => {
         G.resetGameState().startingGridState()
 
+        B.live = false
         B.paint(G.grid)
 
         document.querySelector('#count').innerText = G.count

@@ -35,6 +35,7 @@ const Board = function(game, width, height, speed) {
     this.gameLoop = this.gameLoop.bind(this)
     
     this.gameInterval = null
+    this.live = false
 }
 
 
@@ -108,8 +109,8 @@ Board.prototype.handleArrowKeyDown = function({key}) {
     
     // when game hasn't started yet
     // initialize game loop
-    if (!this.game.live) {
-        this.game.live = true
+    if (!this.live) {
+        this.live = true
         this.spawn()
     }
 }
