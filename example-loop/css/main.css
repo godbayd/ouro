@@ -15,4 +15,30 @@ body {
     width: 100%;
     padding-top: 80px;
     background-color: var(--black);
+    color: white;
+}
+
+p {
+
+}
+
+.high-score-con {
+    font-size: 20px; 
+    display: flex;
+    margin: 20px 0px;
+    color: grey;
+}
+
+
+.high-score-con .label {
+    margin-right: 10px
+}
+
+#reset {
+    margin-bottom: 20px;
+}
+
+#count {
+    color: white;
+    font-size: 30px;
 }
