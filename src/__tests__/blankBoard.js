@@ -1,10 +1,10 @@
-import Game from '../snake'
+import Ouro from '../ouro'
 
 describe('snake stuff', () => {
     test('blankGrid() sets grid to all zeros', () => {
         const xCount = 40
         const yCount = 20
-        const G = new Game(xCount, yCount)
+        const G = new Ouro(xCount, yCount)
         
         G.blankGrid()
         

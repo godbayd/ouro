@@ -1,4 +1,4 @@
-import Game from '../snake'
+import Ouro from '../ouro'
 
 const usedState = {
     grid: [],
@@ -24,7 +24,7 @@ const initState = {
 
 describe('resetGameState() stuff', () => {
     test('will reset modified state back to initial state', () => {
-        const G = new Game(20, 20)
+        const G = new Ouro(20, 20)
         
         G.blankGrid()
         

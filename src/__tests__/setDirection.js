@@ -1,9 +1,9 @@
-import Game from '../snake'
+import Ouro from '../ouro'
 
 
 describe('Attempting to change direction that IS NOT a directly opposite direction should successfully change direction', () => {
     const attemptLateralMovement = (currentDir, setDir) => {
-        const G = new Game(20, 20)
+        const G = new Ouro(20, 20)
 
         // existing direction
         G.direction = currentDir
@@ -56,7 +56,7 @@ describe('Attempting to change direction that IS NOT a directly opposite directi
 describe('Attempting to change direction to a directly opposite direction should not be ignored and not change update direction', () => {
 
     const attemptOpposingDirection = (currentDir, setDir) => {
-        const G = new Game(20, 20)
+        const G = new Ouro(20, 20)
 
         // existing direction
         G.direction = currentDir

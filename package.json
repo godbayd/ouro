@@ -1,8 +1,8 @@
 {
-  "name": "snake",
+  "name": "ouro",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/snake.js",
+  "main": "dist/ouro.js",
   "scripts": {
     "test": "npx jest --watch",
     "build": "npx webpack --config webpack.prod.js",

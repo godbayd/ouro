@@ -1,8 +1,8 @@
-import Game from '../snake'
+import Ouro from '../ouro'
 
 describe('init stuff', () => {
     test('init() creates grid with whos cells are all zeros apart from a single 1 and a single 2', () => {
-        const G = new Game(20, 20)
+        const G = new Ouro(20, 20)
         
         G.startingGridState()
         

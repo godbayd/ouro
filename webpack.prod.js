@@ -3,13 +3,13 @@ const { merge } = require('webpack-merge')
 
 const config = {
     mode: 'production',
-    entry: './src/snake.js',
+    entry: './src/ouro.js',
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: 'snake.js',
+        filename: 'ouro.js',
         globalObject: 'this',
         library: {
-            name: 'snake',
+            name: 'ouro',
             type: 'umd'
         }
     }

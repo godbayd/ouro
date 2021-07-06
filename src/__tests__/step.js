@@ -1,7 +1,7 @@
-import Game from '../snake'
+import Ouro from '../ouro'
 
 describe('step() direction stuff', () => {
-    const G = new Game(20, 20)
+    const G = new Ouro(20, 20)
     
     G.blankGrid()
     

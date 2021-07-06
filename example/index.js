@@ -1,9 +1,9 @@
-import Game from '../src/snake'
+import Ouro from '../src/ouro'
 import Board from './js/board'
 import './css/main.css'
 
 window.onload = e => {
-    const G = new Game(20, 20)
+    const G = new Ouro(20, 20)
     const B = new Board(G, 300, 300, 100)
 
     G.startingGridState()

@@ -144,5 +144,5 @@ Game.prototype.startingGridState = function() {
 
 
 
-
-export default Game
+const Ouro = Game
+export default Ouro
