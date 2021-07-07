@@ -5,10 +5,10 @@ Ouro is a library that assists in creating snake game applications.The Business 
 
 ## Examples
 `npm run example`
-* [without gameLoop](../example)
+* [without gameLoop](https://github.com/godbayd/ouro/tree/main/example)
 
 `npm run example-loop`
-* [gameLoop example](../example)
+* [using gameLoop](https://github.com/godbayd/ouro/tree/main/example-loop)
 
 
 ## Main
