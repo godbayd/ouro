@@ -81,7 +81,7 @@ Ouro is a library that assists in creating snake game applications.The Business 
 
 ## Todos
 - add an options to choose between interval and animation frame in gameLoop
-
+- change setDirection args to accept more generic values. ie: left, right etc... instead of ArrowLeft, ArrowRight...
 
 
 
