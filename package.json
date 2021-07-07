@@ -2,16 +2,17 @@
   "name": "ouro",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/ouro.js",
+  "main": "./dist/ouro.js",
+  "files": ["dist/ouro.js"],
   "scripts": {
     "test": "npx jest --watch",
     "build": "npx webpack --config webpack.prod.js",
     "example": "webpack serve --port 3000 --config ./example/webpack.example.js",
     "example-loop": "webpack serve --port 3001 --config ./example-loop/webpack.example.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["ouro", "snake", "game", "ourojs"],
+  "author": "Dustin Godbay",
+  "license": "AGPL-3.0-or-later",
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.7",
